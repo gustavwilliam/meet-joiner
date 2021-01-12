@@ -134,3 +134,7 @@ dmypy.json
 
 # OS specific
 .DS_Store
+
+# Repo-specific
+token.pickle
+credentials.json

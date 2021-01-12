@@ -25,7 +25,7 @@ def pick(events: List[Event], title: str) -> int:
     """
     Let's the user pick one of the provided options.
 
-    Returns the index of the chosen item.
+    Returns the chosen item.
     """
     menu_items = [_get_menu_item(event, i) for i, event in enumerate(events)]
 
@@ -34,4 +34,5 @@ def pick(events: List[Event], title: str) -> int:
         title=title,
     )
 
-    return menu.show()
+    chosen_item_index = menu.show()
+    return events[chosen_item_index]

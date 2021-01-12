@@ -27,6 +27,9 @@ def pick(events: List[Event], title: str) -> Event:
 
     Returns the chosen item.
     """
+    if not events:
+        raise ValueError("No events specified.")
+
     menu_items = [_get_menu_item(event, i) for i, event in enumerate(events)]
 
     menu = TerminalMenu(

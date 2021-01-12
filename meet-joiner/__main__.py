@@ -30,7 +30,10 @@ def main() -> None:
     calendar = Calendar(get_credentials())
     events = events_on_date(date.today(), calendar)
 
-    pick_and_connect(events)
+    if events:
+        pick_and_connect(events)
+    else:
+        print("You have no events today.")
 
 
 if __name__ == "__main__":

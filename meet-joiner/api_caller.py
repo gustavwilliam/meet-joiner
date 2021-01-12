@@ -26,8 +26,6 @@ class Calendar:
         min_time = min_date.isoformat() + "Z"  # 'Z' indicates UTC time
         max_time = max_date.isoformat() + "Z"
 
-        print(min_time, max_time)
-
         events = (
             self.service.events()
             .list(

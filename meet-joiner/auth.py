@@ -31,6 +31,8 @@ def get_credentials(token_path: str = "token.pickle") -> Credentials:
 
     If none are saved locally, prompt the user to authenticate.
     """
+    creds = None
+
     if os.path.exists("token.pickle"):
         with open(token_path, "rb") as token:
             creds = pickle.load(token)

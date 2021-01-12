@@ -8,6 +8,7 @@ class Event:
 
     def __init__(self, api_response: dict) -> None:
         self.id: str = api_response["id"]
+        self.title = api_response["summary"]
         self.start_time = datetime.fromisoformat(api_response["start"]["dateTime"])
         self.end_time = datetime.fromisoformat(api_response["end"]["dateTime"])
 

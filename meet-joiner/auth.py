@@ -25,7 +25,7 @@ def authenticate(creds: Credentials) -> Credentials:
     return creds
 
 
-def get_credentials(token_path: str) -> Credentials:
+def get_credentials(token_path: str = "token.pickle") -> Credentials:
     """
     Get user's access and refresh tokens.
 

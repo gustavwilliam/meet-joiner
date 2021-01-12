@@ -16,16 +16,16 @@ def authenticate(creds: Credentials) -> Credentials:
     if creds and creds.expired and creds.refresh_token:
         creds.refresh(Request())
     else:
-        flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+        flow = InstalledAppFlow.from_client_secrets_file("meet-joiner/auth.py", SCOPES)
         creds = flow.run_local_server(port=0)
 
-    with open("token.pickle", "wb") as token:
+    with open("meet-joiner/token.pickle", "wb") as token:
         pickle.dump(creds, token)
 
     return creds
 
 
-def get_credentials(token_path: str = "token.pickle") -> Credentials:
+def get_credentials() -> Credentials:
     """
     Get user's access and refresh tokens.
 
@@ -33,8 +33,8 @@ def get_credentials(token_path: str = "token.pickle") -> Credentials:
     """
     creds = None
 
-    if os.path.exists("token.pickle"):
-        with open(token_path, "rb") as token:
+    if os.path.exists("meet-joiner/token.pickle"):
+        with open("meet-joiner/token.pickle", "rb") as token:
             creds = pickle.load(token)
 
     if not creds or not creds.valid:

@@ -3,7 +3,7 @@
 from datetime import datetime
 
 from google.oauth2.credentials import Credentials
-from googleapiclient.discovery import build, Resource
+from googleapiclient.discovery import Resource, build
 
 
 class Calendar:

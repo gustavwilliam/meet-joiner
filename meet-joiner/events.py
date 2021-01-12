@@ -1,5 +1,6 @@
 """Module for managing and storing Events."""
 
+import webbrowser
 from datetime import date, datetime, timedelta
 from typing import List
 
@@ -19,6 +20,13 @@ class Event:
             self.meeting_link = api_response["conferenceData"]["entryPoints"][0]["uri"]
         except KeyError:
             self.meeting_link = None
+
+    def connect_to_meeting(self) -> None:
+        """Open the event meeting link in the default browser, if one exists."""
+        if self.meeting_link:
+            webbrowser.open(self.meeting_link)
+        else:
+            raise AttributeError(f"No meeting link is defined for '{self.title}'.")
 
 
 def events_on_date(target: date, calendar: Calendar) -> List[Event]:

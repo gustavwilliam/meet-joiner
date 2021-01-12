@@ -17,18 +17,23 @@ class Calendar:
         return build("calendar", "v3", credentials=creds)
 
     def events_in_time_range(
-        self, min_time: datetime, max_time: datetime, max_results: int = 15
+        self, min_date: datetime, max_date: datetime, max_results: int = 15
     ) -> dict:
         """Fetches the events in a given time range."""
-        min_time = min_time.isoformat() + "Z"  # 'Z' indicates UTC time
-        max_time = max_time.isoformat() + "Z"
+        min_date = datetime.combine(min_date, datetime.min.time())
+        max_date = datetime.combine(max_date, datetime.min.time())
+
+        min_time = min_date.isoformat() + "Z"  # 'Z' indicates UTC time
+        max_time = max_date.isoformat() + "Z"
+
+        print(min_time, max_time)
 
         events = (
             self.service.events()
             .list(
                 calendarId="primary",
-                timeMin=min,
-                timeMax=max,
+                timeMin=min_time,
+                timeMax=max_time,
                 maxResults=max_results,
                 singleEvents=True,
                 orderBy="startTime",

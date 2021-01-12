@@ -49,8 +49,8 @@ def confirm(prompt: str) -> bool:
     """
     menu = TerminalMenu(
         [
-            "[Y] Yes",
-            "[N] No",
+            "[0] Yes",
+            "[1] No",
         ],
         title=prompt,
     )

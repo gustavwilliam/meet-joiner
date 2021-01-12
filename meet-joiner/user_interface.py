@@ -21,7 +21,7 @@ def _get_menu_item(event: Event, index: str) -> List[str]:
     return f"[{index}] {start_time}–{end_time} {title}"
 
 
-def pick(events: List[Event], title: str) -> int:
+def pick(events: List[Event], title: str) -> Event:
     """
     Let's the user pick one of the provided options.
 

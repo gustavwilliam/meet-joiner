@@ -36,3 +36,21 @@ def pick(events: List[Event], title: str) -> Event:
 
     chosen_item_index = menu.show()
     return events[chosen_item_index]
+
+
+def confirm(prompt: str) -> bool:
+    """
+    Confirms a prompt with the user, through a yes or no question.
+
+    Returns a boolean matching their response.
+    """
+    menu = TerminalMenu(
+        [
+            "[Y] Yes",
+            "[N] No",
+        ],
+        title=prompt,
+    )
+
+    answer = menu.show()
+    return not bool(answer)  # 'not' since 'True' has the index 0 and 'False' has 1

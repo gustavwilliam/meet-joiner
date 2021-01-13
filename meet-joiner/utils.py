@@ -1,7 +1,7 @@
 """Contains all utilities used in the package."""
 
 from datetime import datetime
-from typing import List
+from typing import List, Optional
 
 import pytz
 from simple_term_menu import TerminalMenu
@@ -32,10 +32,10 @@ def pick(events: List[Event], title: str) -> Event:
         raise ValueError("No events specified.")
 
     menu_items = [_get_menu_item(event, i) for i, event in enumerate(events)]
+    closest_event = closest_event_start(events)
 
     menu = TerminalMenu(
-        menu_items,
-        title=title,
+        menu_items, title=title, cursor_index=events.index(closest_event)
     )
 
     chosen_item_index = menu.show()
@@ -68,7 +68,14 @@ def closest_event_start(
     Gets the event with a start closest to the reference time.
 
     Only non-completed events will be considered. Requires a timezone aware datetime\
-    object as reference.
+    object as reference. Returns None if no un-completed event was found.
     """
     events_before = [event for event in events if event.end_time > reference_time]
-    return min(events_before, key=lambda event: abs(event.start_time - reference_time))
+
+    closest_event: Optional[Event] = None
+    if events_before:
+        event = min(
+            events_before, key=lambda event: abs(event.start_time - reference_time)
+        )
+
+    return closest_event

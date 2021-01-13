@@ -11,6 +11,7 @@ google-api-python-client = "*"
 google-auth-httplib2 = "*"
 google-auth-oauthlib = "*"
 simple-term-menu = "*"
+pytz = "*"
 
 [requires]
 python_version = "3.7"

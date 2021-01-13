@@ -1,8 +1,9 @@
 """Contains all utilities used in the package."""
 
-from typing import List
 from datetime import datetime
+from typing import List
 
+import pytz
 from simple_term_menu import TerminalMenu
 
 from events import Event
@@ -57,3 +58,17 @@ def confirm(prompt: str) -> bool:
 
     answer = menu.show()
     return not bool(answer)  # 'not' since 'True' has the index 0 and 'False' has 1
+
+
+def closest_event_start(
+    events: List[Event],
+    reference_time: datetime = datetime.utcnow().replace(tzinfo=pytz.UTC),
+):
+    """
+    Gets the event with a start closest to the reference time.
+
+    Only non-completed events will be considered. Requires a timezone aware datetime\
+    object as reference.
+    """
+    events_before = [event for event in events if event.end_time > reference_time]
+    return min(events_before, key=lambda event: abs(event.start_time - reference_time))

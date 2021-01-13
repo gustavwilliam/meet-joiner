@@ -74,7 +74,7 @@ def closest_event_start(
 
     closest_event: Optional[Event] = None
     if events_before:
-        event = min(
+        closest_event = min(
             events_before, key=lambda event: abs(event.start_time - reference_time)
         )
 

@@ -9,7 +9,7 @@ from googleapiclient.discovery import Resource, build
 class Calendar:
     """Class for interacting with the Google Calendar API."""
 
-    def __init__(self, creds):
+    def __init__(self, creds: Credentials) -> None:
         self.service = self._get_service(creds)
 
     def _get_service(self, creds: Credentials) -> Resource:

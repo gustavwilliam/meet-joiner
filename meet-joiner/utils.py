@@ -32,7 +32,7 @@ def pick(events: List[Event], title: str) -> Event:
         raise ValueError("No events specified.")
 
     menu_items = [_get_menu_item(event, i) for i, event in enumerate(events)]
-    closest_event = closest_event_start(events)
+    closest_event = closest_event_start(events) or events[-1]  # Closest or last event
 
     menu = TerminalMenu(
         menu_items, title=title, cursor_index=events.index(closest_event)

@@ -1,4 +1,4 @@
-"""Contains all utilities for the user interface."""
+"""Contains all utilities used in the package."""
 
 from typing import List
 from datetime import datetime

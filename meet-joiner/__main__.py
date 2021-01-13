@@ -5,7 +5,7 @@ from typing import List
 
 from api_caller import Calendar
 from auth import get_credentials
-from user_interface import pick, confirm
+from utils import pick, confirm
 from events import events_on_date, Event
 
 
